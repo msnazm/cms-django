@@ -1,0 +1,64 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="screen">
+<link rel="stylesheet" href="{% static 'css/zebra.css' %}" type="text/css" media="screen">
+<link rel="stylesheet" href="{% static 'css/dr-framework.css' %}" type="text/css" media="screen">
+<link rel="stylesheet" href="{% static 'css/navigation.css' %}" type="text/css" media="screen">
+<link rel="stylesheet" type="text/css" href="{% static 'css/fullwidth.css' %}" media="screen" />
+	<link rel="stylesheet" href="{% static 'css/revslider.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/jquery.bxslider.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}" type="text/css" media="screen">
+	<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Philosopher:400,700,400italic' rel='stylesheet' type='text/css'>
+
+
+
+
+<style>
+@font-face {
+    font-family: "Yekan";
+    src: url( "font/W_YEKAN_0.TTF" );
+    src: local( "?" ), url( "font/W_YEKAN_0.TTF" )format( "truetype" );
+}
+*{
+font-family:Yekan !important;
+}
+
+.module h2, .module caption, .inline-group h2,#header
+{   
+    margin: 20;
+    padding: 2px 5px 3px 5px;
+    font-size: 20px;
+    text-align: right;
+    font-weight: bold;
+    background: #7CA0C7 url(../img/default-bg.gif) top left repeat-x;
+    color: #fff;
+}
+a
+{   
+    margin: 0;
+    padding: 2px 5px 3px 5px;
+    font-size: 16px;
+    text-align: right;
+    font-weight: bold;
+	font-family:Yekan !important;
+	font-family: 'Vazir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+div
+{   
+    margin: 0;
+    padding: 2px 5px 3px 5px;
+    font-size: 16px;
+    text-align: right;
+    font-weight: bold;
+	font-family:Yekan !important;
+	font-family: 'Vazir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+</style>
+{% endblock %}

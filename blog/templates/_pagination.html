@@ -1,0 +1,19 @@
+   <div class="row">
+                <div class="span9">
+				    {% if items.has_previous %}
+					<a class="paging" href="?page=1">
+            <i class="paging" aria-hidden="true">اولین</i>
+        </a>
+                  <a href="?page={{ items.previous_page_number }}" class="paging">&#62;</a>
+				   {% endif %}
+                  <a href="#" class="paging">{{ items.number }}</a>
+                  <a href="#" class="paging">...</a>
+                  <a href="#" class="paging">{{ items.paginator.num_pages }}</a>
+				   {% if items.has_next %}
+                  <a href="?page={{ items.next_page_number }}" class="paging">&#60;</a>
+				    <a class="paging" href="?page={{ items.paginator.num_pages }}">
+					<i class="paging" aria-hidden="true">آخرین</i>
+					</a>
+				   {% endif %}
+                </div>
+              </div> 

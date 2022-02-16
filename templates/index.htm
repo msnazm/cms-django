@@ -1,0 +1,275 @@
+{% load static %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CMS WEBSITE</title>
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/zebra.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/dr-framework.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/navigation.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/fullwidth.css' %}" media="screen" />
+	<link rel="stylesheet" href="{% static 'css/revslider.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/jquery.bxslider.css' %}" media="screen">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet'>
+	<link href='http://fonts.googleapis.com/css?family=Philosopher:400,700,400italic' rel='stylesheet'>
+
+	
+
+	<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js' %}"></script>
+	<![endif]-->
+	<!-- html5.js for IE less than 9 -->
+	<!-- css3-mediaqueries.js for IE less than 9 -->
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js' %}"></script>
+	<![endif]-->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js' %}"></script>
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+ 	<link rel="stylesheet" type="text/css" href="{% static 'css/ie8-and-down.css' %}" />
+	<![endif]-->
+</head>
+<body>
+
+	<!-- Start Header -->
+	<header>
+		
+		<div class="subheader clearfix">
+			<div class="inner-subheader">
+						{% for exitcontact_us in contact_us %}
+				<div class="phone">{{ exitcontact_us.tell }}</div>
+	{% endfor %}
+				<div class="subheader2">
+					<ul>
+					{% for exitnavbar_up in header %}
+						<li><a href="{{ exitnavbar_up.menu_link }}">{{ exitnavbar_up.menu_name }}</a></li>
+					{% endfor %}
+					</ul>				
+				</div>
+			</div>
+		</div>
+
+		<div class="row2">
+		<div class="upper-header">
+			
+			<div class="logo">
+				<a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a>
+			</div>					
+			
+			<!-- Navigation -->
+			<nav id="nav">
+				<ul id="navlist" class="sf-menu clearfix">
+					<!-- <li class="current"><a href="index.html">صفحه اصلی</a>
+						<ul class="sub-menu">
+							<li><a href="home-boxed.html">لیست</a></li>
+							<li><a href="home2.html">صفحه اصلی2</a></li>
+							<li><a href="home3.html">صفحه اصلی3</a></li>
+							<li><a href="home4.html">صفحه اصلی 4</a></li>
+						</ul>
+					</li> -->
+					 {% for exitmenu in menu %}
+					<li><a href="{{ exitmenu.menu_link }}">{{ exitmenu.menu_name }}</a>
+						<ul class="sub-menu">
+						{% for exitunder in exitmenu.NavbarUnders.all %}
+							<li><a href="{{ exitunder.menu_link_u }}">{{ exitunder.menu_name_u }}</a></li>
+						{% endfor %}
+						</ul>
+					</li>
+					{% endfor %}
+				</ul>
+					
+			</nav>
+        	<!-- Navigation -->  
+        	<div class="clear"></div>
+       </div>  
+       <!-- End Upper Header -->
+       </div>
+       <!-- End Row2 -->
+
+	</header>
+	<!-- End Header -->
+	 <!-- Slider -->
+	<div class="slider" >
+		<div class="flexslider">
+		  <ul class="slides">
+		  {% for exitslider in slider_up %}
+		    <li>
+		      <img src="{% static exitslider.image.url %}" />
+		    </li>
+			{% endfor %}
+		  </ul>
+		</div>
+	
+
+	<!-- Book Apointment -->
+	<!-- <div class="book-form">
+		<div class="inner-form">
+
+		<h4><img src="images/calendar.png" alt="">رزرو وقت ملاقات
+		</h4>
+		<form id="contact-form2" action="#">
+			<div class="inputs">
+				<input name="name" id="name" type="text" data-value="نام">
+				<input name="mail" id="mail" type="text" data-value="آدرس ایمیل">
+				<input name="phone" id="phone" type="text" data-value="تلفن همراه">
+	       		<input name="date" id="date" type="text" data-value="DD / MM / YYYY 00:00">
+	        </div>
+
+			<input id="submit_contact2" type="submit" value="قرار ملاقات">
+			<div id="msg2" class="message"></div>
+		</form>
+		
+		</div>
+	</div> -->
+	<!-- End Book Apointment -->
+	</div>
+	<!-- End SLider -->
+
+
+
+	<!-- Container -->
+	<div class="wrapper">
+				
+		<!-- Recent Works -->
+				
+		<div class="features dark">
+			{% for exitservices in services %}
+			<div class="features-items column3">
+
+				<a href="#">
+					<div class="service-item">
+						<a href="#" class="service-img"><img src="{% static exitservices.image.url %}" alt=""></a>
+					</div>
+					<h4>{{ exitservices.title }}</h4>
+					<div class="line"></div>
+					<p>{{ exitservices.description }}</p>
+				</a>
+	
+			</div>
+					{% endfor %}
+			<div class="clear"></div>
+		</div>
+		<!-- End Recent Works -->
+
+		<div class="l-more">
+			<div class="l-banner">
+			{% for exitcomment in comment_center %}
+				<p>{{ exitcomment.description }}</p>
+				<a href="tel:{{ exitcomment.title }}">{{ exitcomment.title }}</a>
+				{% endfor %}
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="recent-projects">
+			<h4>آخرین اخبار</h4>
+			<div class="border"></div>
+			<ul class="dark">
+				<ul class="dark">
+			{% for exitnews in news %}
+				<li class="column3">
+					<img src="{% static exitnews.image.url %}" style="width: 250px;height: 180px;" alt="">
+					<h4>{{ exitnews.title }}</h4>
+					<div>{{ exitnews.body | safe }}</div>
+					<a href="{% url 'new_detail' exitnews.title %}" class="details">ادامه مطلب</a>
+				</li>
+				{% endfor %}
+			</ul>
+			<div class="clear"></div>
+		</div>
+	
+
+	</div>
+	<!-- End Wrapper -->
+
+	<!-- Footer -->
+	<footer>
+	<div class="inner-footer dark">
+
+		<div class="about column3">
+			<h4>امکانات</h4>
+			<ul>
+	
+			{% for exitnavbar_up in header %}
+						<li><a href="{{ exitnavbar_up.menu_link }}">{{ exitnavbar_up.menu_name }}</a></li>
+					{% endfor %}
+		</div>
+			</ul>
+		<div class="service column3">
+			<h4>خدمات</h4>
+			
+			<ul>
+			{% for exitservices in services %}
+				<li><a href="#">{{ exitservices.title }}</a></li>
+					{% endfor %}
+			</ul>
+		</div>
+
+		<div class="text-widget column3">
+		  {% for exitfooter_comments in footer_comments %}
+			<h4>{{ exitfooter_comments.title }}</h4>
+			<p>{{ exitfooter_comments.description }}</p>
+			 {% endfor %}
+		</div>
+
+		<div class="contact column3">
+			<h4>تماس با ما</h4>
+			{% for exitcontact_us in contact_us %}
+			<p>{{ exitcontact_us.email }}</p>
+			<p>{{ exitcontact_us.tell }}</p>
+			<p>{{ exitcontact_us.adress }}</p>
+			 {% endfor %}      
+		</div>
+		<div class="clear"></div>
+		<!-- End Contact -->
+		<div id="back-to-top">
+			<a href="#top">بازگشت به بالا</a>
+		</div>
+	</div>
+	<!-- End inner Footer -->
+
+	<div class="end-footer">
+		<div class="lastdiv">
+			<div class="copyleft">
+				CopyRight
+			</div>
+
+			<div class="f-socials">
+				<a href="#"><img src="{% static 'images/feed.png' %}" alt=""></a>
+				<a href="#"><img src="{% static 'images/tweet.png' %}" alt=""></a>
+				<a href="#"><img src="{% static 'images/fcb.png' %}" alt=""></a>
+				<a href="#"><img src="{% static 'images/gplus.png' %}" alt=""></a>
+				<a href="#"><img src="{% static 'images/pin.png' %}" alt=""></a>
+			</div>
+		<div class="clear"></div>
+		</div>
+	</div>
+	</footer>
+
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+	<script type="text/javascript" charset="utf-8">
+  		$(window).load(function() {
+  		  $('.flexslider').flexslider();
+  		});
+	</script>
+	<script src="{% static 'js/jquery.superfish.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/zebra_datepicker.js' %}"></script>
+    <script src="{% static 'js/core.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}

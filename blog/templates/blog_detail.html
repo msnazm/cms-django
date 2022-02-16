@@ -1,0 +1,300 @@
+{% load static %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CMS WEBSITE</title>
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/bootstrap-responsive.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/dr-framework.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/navigation.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/fullwidth.css' %}" media="screen" />
+	<link rel="stylesheet" href="{% static 'css/revslider.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/jquery.bxslider.css' %}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}" type="text/css" media="screen">
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Philosopher:400,700,400italic' rel='stylesheet' type='text/css'>
+
+
+
+	<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+	<!-- html5.js for IE less than 9 -->
+	<!-- css3-mediaqueries.js for IE less than 9 -->
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+ 	<link rel="stylesheet" type="text/css" href="{% static 'css/ie8-and-down.css' %}" />
+	<![endif]-->
+</head>
+
+<body>
+
+	<!-- Start Header -->
+	<header id="header">
+
+		<div class="subheader clearfix">
+			<div class="inner-subheader">
+				{% for exitcontact_us in contacts %}
+				<div class="phone">{{ exitcontact_us.tell }}</div>
+				{% endfor %}
+				<div class="subheader2">
+					<ul>
+						{% for exitnavbar_up in header %}
+						<li><a href="{{ exitnavbar_up.menu_link }}">{{ exitnavbar_up.menu_name }}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row2">
+			<div class="upper-header">
+
+				<div class="logo">
+					<a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a>
+				</div>
+
+				<!-- Navigation -->
+				<nav id="nav">
+					<ul id="navlist" class="sf-menu clearfix">
+						<!-- <li class="current"><a href="index.html">صفحه اصلی</a>
+						<ul class="sub-menu">
+							<li><a href="home-boxed.html">لیست</a></li>
+							<li><a href="home2.html">صفحه اصلی2</a></li>
+							<li><a href="home3.html">صفحه اصلی3</a></li>
+							<li><a href="home4.html">صفحه اصلی 4</a></li>
+						</ul>
+					</li> -->
+						{% for exitmenu in menus %}
+						<li><a href="{{ exitmenu.menu_link }}">{{ exitmenu.menu_name }}</a>
+							<ul class="sub-menu">
+								{% for exitunder in exitmenu.NavbarUnders.all %}
+								<li><a href="{{ exitunder.menu_link_u }}">{{ exitunder.menu_name_u }}</a></li>
+								{% endfor %}
+							</ul>
+						</li>
+						{% endfor %}
+					</ul>
+					
+				</nav>
+				<!-- Navigation -->
+				<div class="clear"></div>
+			</div>
+			<!-- End Upper Header -->
+		</div>
+		<!-- End Row2 -->
+
+	</header>
+	<!-- End Header -->
+	<div class="banner">
+		<div class="inner-banner">
+			<div class="note">پست</div>
+			<!-- <div class="site-map">
+
+				منو:<a href="index.html">صفحه اصلی</a> &gt; وبلاگ
+			</div> -->
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<!-- Container -->
+	<div class="wrapper dark">
+
+		<div class="main-blog column9">
+			
+			<div class="blog-box">
+				<a href="#"><img src="{% static item.image.url %}" style="width: 250px;height: 180px;" alt=""></a>
+				<div class="blog-text">
+					<h4>{{ item.title }}</h4>
+					<div class="border"></div>
+					<div class="post-meta">
+						<div class="post-user">{{ user.username }}</div>
+						<div class="post-date">{{ item.created_on}}</div>
+						<div class="clear"></div>
+					</div>
+					<div style="text-align: justify;">{{ item.body | safe }}</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	
+		<!-- Aside Blog -->
+		<div class="side-blog column3">
+			<!-- Tabs -->
+			<div class="tabs">
+				<div class="tabs-widget clearfix">
+					<ul class="tab-links clearfix">
+						<li class="active"><a href="#popular-tab">پست</a></li>
+						<li class=""><a href="#recent-tab">خبر</a></li>
+					</ul>
+
+					<div id="popular-tab" style="display: block;">
+						<ul>
+							{% for exitPost in post %}
+							<li><a href="{% url 'blog_detail' exitPost.pk %}">
+									<img src="{% static exitPost.image.url %}" alt="">
+									<p>{{ exitPost.title }}</p>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+
+					<div id="recent-tab" style="display: none;">
+						<ul>
+							{% for exitNew in items %}
+							<li><a href="{% url 'new_detail' exitNew.pk %}">
+									<img src="{% static exitNew.image.url %}" alt="">
+									<p>{{ exitNew.title }}</p>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				<!-- End Tabs -->
+				<!-- <div class="search">
+					<input type="text" value="Search here.." data-value="Search here..">
+					<input type="submit">
+				</div> -->
+
+				<div class="tag-cloud clearfix">
+					<h3>برچسب ها</h3>
+					{% for exitposttitle in post %}
+					<a href="{% url 'blog_detail' exitposttitle.pk %}">{{ exitposttitle.title }}</a>
+					{% endfor %}
+				</div>
+
+				<div class="widget-services">
+					<h3>خدمات</h3>
+					<!-- Accordion -->
+					<div class="accordion">
+						<div id="accordion-container">
+							{% for exitservices in service %}
+							<h2 class="accordion-header">{{ exitservices.title }}</h2>
+							<div class="accordion-content">
+								<p>{{ exitservices.description }}</p>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<div class="widget-text">
+					{% for exitcomment in comment_center %}
+					<a href="tel:{{ exitcomment.title }}">{{ exitcomment.title }}</a>
+					<p>{{ exitcomment.description }}</p>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!-- End Wrapper -->
+		<div class="clear"> </div>
+		<!-- Footer -->
+	</div>
+	<!-- Footer -->
+	<footer>
+		<div class="inner-footer dark">
+
+			<div class="about column3">
+				<h4>امکانات</h4>
+				<ul>
+
+					{% for exitnavbar_up in header %}
+					<li><a href="{{ exitnavbar_up.menu_link }}">{{ exitnavbar_up.menu_name }}</a></li>
+					{% endfor %}
+			</div>
+			</ul>
+			<div class="service column3">
+				<h4>خدمات</h4>
+
+				<ul>
+					{% for exitservices in service %}
+					<li><a href="#">{{ exitservices.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<div class="text-widget column3">
+				{% for exitfooter_comments in footer_comments %}
+				<h4>{{ exitfooter_comments.title }}</h4>
+				<p>{{ exitfooter_comments.description }}</p>
+				{% endfor %}
+			</div>
+
+			<div class="contact column3">
+				<h4>تماس با ما</h4>
+				{% for exitcontact_us in contacts %}
+				<p>{{ exitcontact_us.email }}</p>
+				<p>{{ exitcontact_us.tell }}</p>
+				<p>{{ exitcontact_us.adress }}</p>
+				{% endfor %}
+			</div>
+			<div class="clear"></div>
+			<!-- End Contact -->
+			<div id="back-to-top">
+				<a href="#top">بازگشت به بالا</a>
+			</div>
+		</div>
+		<!-- End inner Footer -->
+
+		<div class="end-footer">
+			<div class="lastdiv">
+				<div class="copyleft">
+					CopyRight
+				</div>
+
+				<div class="f-socials">
+					<a href="#"><img src="images/feed.png" alt=""></a>
+					<a href="#"><img src="images/tweet.png" alt=""></a>
+					<a href="#"><img src="images/fcb.png" alt=""></a>
+					<a href="#"><img src="images/gplus.png" alt=""></a>
+					<a href="#"><img src="images/pin.png" alt=""></a>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</footer>
+
+
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(window).load(function () {
+			$('.flexslider').flexslider();
+		});
+	</script>
+	<script type="text/javascript" src="{% static 'js/jquery.superfish.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/accordion.js' %}"></script>
+	<script src="{% static 'js/jquery.bxslider.js' %}"></script>
+	<script>$(document).ready(function () {
+			$('.slider1').bxSlider({
+				slideWidth: 370,
+				minSlides: 2,
+				maxSlides: 4,
+				slideMargin: 30
+			});
+		});</script>
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+</html>
+{% endblock %}
